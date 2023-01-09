@@ -1,0 +1,264 @@
+ScreenManager:
+    Home:
+    Quad_Eq:
+    Long_Div:
+
+<Home>:
+    name: "home"
+    BoxLayout:
+        orientation: 'vertical'
+        Image:
+            source: 'AlgeCheck_logo.png'
+            pos_hint:{"center_x":0.5, "top":0.95}
+            allow_stretch: False
+            keep_ratio: False
+        Button:
+            id: 'quadEq_button'
+            pos_hint:{"center_x":0.5}
+            text: "Quadratic Equations"
+            size_hint:0.5,0.5
+            background_color: (0/255, 183/255, 255, 1) 
+            on_release: 
+                app.root.current = "quadratic"
+                root.manager.transition.direction = "left"
+        Button:
+            id: 'longDiv_button'
+            pos_hint:{"center_x":0.5}
+            text: "Long Division"
+            size_hint:0.5,0.5
+            background_color: (0/255, 183/255, 255, 1) 
+            on_release: 
+                app.root.current = "longDiv"
+                root.manager.transition.direction = "left"
+
+<Quad_Eq>:
+    name: "quadratic"
+
+    a_quad: quad_x2_in
+    b_quad: quad_x1_in
+    c_quad: quad_x0_in
+    quad_result: quad_result
+
+    FloatLayout:
+        Image:
+            source: 'AlgeCheck_logo.png'
+            pos_hint:{"x":0.4, "top":1}
+            size_hint:0.2,0.2
+            allow_stretch: True
+            keep_ratio: False
+        Button:
+            id: 'backHome'
+            pos_hint:{"x":0.8, "top":1}
+            text: "Back to Homepage"
+            size_hint:0.2,0.2
+            background_color: (0/255, 183/255, 255, 1)
+            on_press:
+                root.page_reset()
+            on_release: 
+                app.root.current = "home"
+                root.manager.transition.direction = "right"
+        Label:
+            id: 'quad_head_label'
+            text: "Quadratic Equations"
+            pos_hint:{"x":0, "center_y": 0.73}
+            font_size: 30
+            bold: True
+            color: (0, 0, 0, 1)
+        Label:
+            id: 'quad_coe_label'
+            text: "Input each coefficient:"
+            pos_hint:{"center_x":0.3, "center_y": 0.63}
+            font_size: 18
+            italic: True
+            bold: True
+            color: (0, 0, 0, 1)
+
+        TextInput:
+            id:quad_x2_in
+            pos_hint:{"x":0.3, "top": 0.55}
+            size_hint:0.1,0.07
+            multiline: False
+        Image:
+            source: 'coe^2.PNG'
+            pos_hint:{"center_x":0.44, "center_y": 0.515}
+            size_hint:0.1,0.1
+            allow_stretch: True
+            keep_ratio: False
+        TextInput:
+            id:quad_x1_in
+            pos_hint:{"x":0.47, "top": 0.55}
+            size_hint:0.1,0.07
+            multiline: False
+        Image:
+            source: 'coe^1.PNG'
+            pos_hint:{"center_x":0.599, "center_y": 0.505}
+            size_hint:0.08,0.08
+            allow_stretch: True
+            keep_ratio: False
+        TextInput:
+            id:quad_x0_in
+            pos_hint:{"x":0.62, "top": 0.55}
+            size_hint:0.1,0.07
+            multiline: False
+
+        Button:
+            id: 'quad_solve'
+            pos_hint:{"x":0.47, "top":0.4}
+            text: "Solve"
+            size_hint:0.1,0.1
+            background_color: (0/255, 183/255, 255, 1)
+            on_release:
+                root.quadratic()
+        Label:
+            id: quad_result
+            text: " "
+            pos_hint:{"center_x":0.5, "center_y": 0.25}
+            font_size: 25
+            bold: True
+            color: (0, 0, 0, 1)
+
+
+
+<Long_Div>:
+    name: "longDiv"
+    coe_a1:top_coe3_in
+    coe_b1:top_coe2_in
+    coe_c1:top_coe1_in
+    coe_d1:top_coe0_in
+    coe_a2:bottom_coe2_in
+    coe_b2:bottom_coe1_in
+    coe_c2:bottom_coe0_in
+    long_result: long_result
+    long_remainder: long_remainder
+
+    FloatLayout:
+        Image:
+            source: 'AlgeCheck_logo.png'
+            pos_hint:{"x":0.4, "top":1}
+            size_hint:0.2,0.2
+            allow_stretch: True
+            keep_ratio: False
+        Button:
+            id: 'backHome'
+            pos_hint:{"x":0.8, "top":1}
+            text: "Back to Homepage"
+            size_hint:0.2,0.2
+            background_color: (0/255, 183/255, 255, 1)
+            on_press:
+                root.page_reset()
+            on_release: 
+                app.root.current = "home"
+                root.manager.transition.direction = "right"
+        Label:
+            id: 'long_div_head'
+            text: "Long Division"
+            pos_hint:{"center_x":0.5, "center_y": 0.75}
+            font_size: 30
+            bold: True
+            color: (0, 0, 0, 1)
+        Label:
+            id: 'long_coe_label'
+            text: "Input each coefficient:"
+            pos_hint:{"center_x":0.3, "center_y": 0.69}
+            font_size: 18
+            italic: True
+            bold: True
+            color: (0, 0, 0, 1)
+
+        TextInput:
+            id:top_coe3_in
+            pos_hint:{"center_x":0.28, "top": 0.65}
+            size_hint:0.1,0.07
+            multiline: False
+        Image:
+            source: 'coe^3.PNG'
+            pos_hint:{"center_x":0.37, "center_y": 0.61}
+            size_hint:0.1,0.1
+            allow_stretch: True
+            keep_ratio: False
+        TextInput:
+            id:top_coe2_in
+            pos_hint:{"center_x":0.455, "top": 0.65}
+            size_hint:0.1,0.07
+            multiline: False
+        Image:
+            source: 'coe^2.PNG'
+            pos_hint:{"center_x":0.545, "center_y": 0.61}
+            size_hint:0.1,0.1
+            allow_stretch: True
+            keep_ratio: False
+        TextInput:
+            id:top_coe1_in
+            pos_hint:{"center_x":0.63, "top": 0.65}
+            size_hint:0.1,0.07
+            multiline: False
+        Image:
+            source: 'coe^1.PNG'
+            pos_hint:{"center_x":0.705, "center_y": 0.6}
+            size_hint:0.08,0.08
+            allow_stretch: True
+            keep_ratio: False
+        TextInput:
+            id:top_coe0_in
+            pos_hint:{"center_x":0.78, "top": 0.65}
+            size_hint:0.1,0.07
+            multiline: False
+
+        Image:
+            source: 'out.png'
+            pos_hint:{"center_x":0.5, "center_y": 0.51}
+            size_hint:0.06,0.06
+            allow_stretch: True
+            keep_ratio: False
+
+        TextInput:
+            id:bottom_coe2_in
+            pos_hint:{"x":0.3, "top": 0.45}
+            size_hint:0.1,0.07
+            multiline: False
+        Image:
+            source: 'coe^2.PNG'
+            pos_hint:{"center_x":0.44, "center_y": 0.41}
+            size_hint:0.1,0.1
+            allow_stretch: True
+            keep_ratio: False
+        TextInput:
+            id:bottom_coe1_in
+            pos_hint:{"x":0.47, "top": 0.45}
+            size_hint:0.1,0.07
+            multiline: False
+        Image:
+            source: 'coe^1.PNG'
+            pos_hint:{"center_x":0.595, "center_y": 0.4}
+            size_hint:0.08,0.08
+            allow_stretch: True
+            keep_ratio: False
+        TextInput:
+            id:bottom_coe0_in
+            pos_hint:{"x":0.62, "top": 0.45}
+            size_hint:0.1,0.07
+            multiline: False
+
+
+        Button:
+            id: 'long_solve'
+            pos_hint:{"x":0.47, "top":0.3}
+            text: "Solve"
+            size_hint:0.1,0.1
+            background_color: (0/255, 183/255, 255, 1)
+            on_release:
+                root.poly_div()
+        Label:
+            id: long_result
+            text: " "
+            pos_hint:{"center_x":0.5, "center_y": 0.15}
+            font_size: 25
+            bold: True
+            color: (0, 0, 0, 1)
+        Label:
+            id: long_remainder
+            text: " "
+            pos_hint:{"center_x":0.5, "center_y": 0.1}
+            font_size: 25
+            bold: True
+            color: (0, 0, 0, 1)
